@@ -1,3 +1,430 @@
+
+/* Outer container styling */
+.outer-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+/* margin-top: 10px; */
+padding-top: 141px;
+  align-items: center;
+}
+.mobile-outline {
+  width: 360px;
+  height: 750px;
+  background-color: #fff;
+  border: 16px solid black;
+  border-radius: 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.status-bar {
+  height: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  width: 96%;
+}
+
+.status-bar .status-icons {
+  display: flex;
+  gap: 5px;
+}
+
+.wallpaper {
+  width: 100%;
+  height: 100%;
+  background-image: url('../.././assets/pexels-pixabay-56866.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px; /* To ensure content doesn't overlap the status bar */
+}
+
+.branding {
+  font-size: 2em;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.fab-button {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  color: white;
+  background: linear-gradient(45deg, #ff007f, #ffb600); /* Gradient background */
+  border: none;
+  border-radius: 50px; /* Large border radius for pill shape */
+  cursor: pointer;
+  margin-top: 15px;
+  position: relative;
+  overflow: hidden; /* Ensures that the pseudo-elements don't overflow */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+/* Icon styling */
+.fab-button i {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+/* Hover and active effects */
+.fab-button:hover {
+  background: linear-gradient(45deg, #e6006c, #ff8c00); /* Darker gradient on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.fab-button:active {
+  background: linear-gradient(45deg, #d6005c, #ff8c00); /* Even darker gradient on click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow returns to normal */
+  transform: translateY(2px); /* Slight move down on click for effect */
+}
+
+/* Ripple effect */
+.fab-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s, opacity 0.6s;
+  opacity: 0;
+}
+
+.fab-button:focus::before,
+.fab-button:hover::before,
+.fab-button:active::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.app-screen {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.app-screen h2 {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #f44336;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #c33c2b;
+}
+.navigation-bar {
+  height: 50px;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.nav-button {
+  padding: 10px;
+  font-size: 1em;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.center{
+  display: flex;
+  justify-content: space-between;
+
+}
+/* Overall Container Styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  overflow: hidden;
+}
+
+/* Header Styling */
+.center {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 39px;
+  background-color: #2196f3;
+  color: white;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.center h2 {
+  margin: 0;
+  font-size: 2.3em;
+  font-weight: bold;
+}
+
+/* Button Styling */
+button {
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  padding: 12px 24px;
+  margin: 8px;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+button i {
+  margin-right: 8px;
+}
+
+.start-btn {
+  background-color: #4caf50;
+}
+
+.start-btn:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.stop-btn {
+  background-color: #f44336;
+}
+
+.stop-btn:hover {
+  background-color: #c62828;
+  transform: scale(1.05);
+}
+
+.save-btn {
+  background-color: #00bcd4;
+}
+
+.save-btn:hover {
+  background-color: #0097a7;
+}
+
+.delete-btn {
+  background-color: #e64a19;
+}
+
+.delete-btn:hover {
+  background-color: #d84315;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Audio Recorder Section */
+.audio-recorder {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Recording Indicator */
+.recording-indicator img {
+  width: 80px;
+  height: auto;
+}
+
+/* Recording Time */
+.recording-time {
+  font-size: 1.4em;
+  color: #333;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+/* Audio Player */
+.audio-player {
+  margin-top: 20px;
+  height: 100px;
+  width: 307px;
+}
+
+audio {
+  width: 100%;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* Saved Files Section */
+.saved-files {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.saved-files h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.saved-files ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-files li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: -16px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.saved-files li:hover {
+  background-color: #f1f1f1;
+}
+
+.saved-files span {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.saved-files button {
+  background: transparent;
+  border: none;
+  color: #2196f3;
+  font-size: 16px;
+  transition: color 0.3s;
+  margin-left: 0px;
+}
+
+.saved-files button:hover {
+  color: #0d47a1;
+}
+
+/* Pulse Container */
+.pulse-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 4px;
+    border-radius: 75%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add shadow around the circular container */
+}
+
+/* Pulsing Image */
+.pulse-image {
+  width: 100px; /* Set a fixed size or adjust as needed */
+  height: 100px; /* Ensure height and width are equal for a perfect circle */
+  border-radius: 50%; /* Makes the image circular */
+  position: relative;
+  animation: pulse-animation 1.5s infinite; /* Pulse animation */
+}
+
+/* Pulse Animation */
+@keyframes pulse-animation {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.2);
+      opacity: 0.5;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+.saved-btn {
+  display: flex;
+  align-items: flex-end;
+  background-color: #2196f3;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.saved-btn i {
+  margin-right: 8px;
+}
+
+.saved-btn:hover {
+  background-color: #1976d2;
+  transform: scale(1.05);
+}
 .speech-result-width {
   width: 100%;
 }
@@ -51,3 +478,4 @@ section {
     opacity: 0.5;
   }
 }
+

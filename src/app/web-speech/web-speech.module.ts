@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebSpeechComponent } from './web-speech.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { ApiserviceService } from '../apiservice.service';
 
 
 @NgModule({
@@ -9,6 +10,6 @@ import { MaterialModule } from '../shared/material/material.module';
   imports: [
     CommonModule,
     MaterialModule
-  ]
+  ],
 })
 export class WebSpeechModule { }

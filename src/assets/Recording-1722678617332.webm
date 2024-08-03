@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /SafeValue%20must%20use%20[property]=binding:%20blob:http://localhost:4200/3751869c-303b-4bb1-bb29-f45364cde1dc%20(see%20https://g.co/ng/security</pre>
+</body>
+</html>

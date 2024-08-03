@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { WebSpeechModule } from './web-speech/web-speech.module';
+import { ApiserviceService } from './apiservice.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { WebSpeechModule } from './web-speech/web-speech.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    WebSpeechModule
+    WebSpeechModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

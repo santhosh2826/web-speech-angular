@@ -7,7 +7,8 @@ import { SpeechEvent } from '../shared/model/speech-event';
 import { SpeechRecognizerService } from '../shared/services/web-apis/speech-recognizer.service';
 import { ActionContext } from '../shared/services/actions/action-context';
 import { SpeechNotification } from '../shared/model/speech-notification';
-
+import { ApiserviceService } from '../apiservice.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'wsa-web-speech',
   templateUrl: './web-speech.component.html',
@@ -26,19 +27,91 @@ export class WebSpeechComponent implements OnInit {
 
   constructor(
     private speechRecognizer: SpeechRecognizerService,
-    private actionContext: ActionContext
-  ) {}
+    private actionContext: ActionContext,
+    private apiService: ApiserviceService,
+    private sanitizer: DomSanitizer
+  ) {
+    this.apiService
+      .recordingFailed()
+      .subscribe(() => (this.isRecording = false));
+    this.apiService
+
+      .getRecordedTime()
+      .subscribe((time) => (this.recordedTime = time));
+    this.apiService.getRecordedBlob().subscribe((data) => {
+      this.teste = data;
+      this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(data.blob)
+      );
+    });
+  }
 
   ngOnInit(): void {
     const webSpeechReady = this.speechRecognizer.initialize(this.currentLanguage);
     if (webSpeechReady) {
       this.initRecognition();
-    }else {
+    } else {
       this.errorMessage$ = of('Your Browser is not supported. Please try Google Chrome.');
     }
+    this.updateTime();
+    this.timeInterval = setInterval(() => this.updateTime(), 60000);
+  }
+
+
+  currentTime: string = '';
+  private timeInterval: any;
+
+  newTaskForm: boolean = false
+  tempDescription!: string;
+  tempName!: string;
+  editMode: boolean = false;
+  roleId!: number;
+  sletter: boolean = true;
+  sletter1: boolean = false;
+  selectedTask!: any
+  showSelectImg: boolean = true;
+  previewUrls: string[] = [];
+  stepStatus: boolean = false;
+  editingStepId!: number
+  selectedLogic: any
+  taskStatus!: string
+  isRecording: boolean = false;
+  recordedTime: any
+  blobUrl: any
+  teste: any
+  startr: boolean = true;
+  end: boolean = false;
+  record: boolean = false;
+  wallpaperhide: boolean = true
+  hole: boolean = true;
+  showRemoveButton: boolean[] = [];
+  savedFiles: { name: string, url: string }[] = [];
+  currentSection: string = 'record'; // 'record' or 'saved'
+  menuOpen: boolean = false; // Track menu open/close state
+  private mediaRecorder: MediaRecorder | null = null;
+  private audioChunks: Blob[] = [];
+  private startTime: number = 0;
+  private timer: any;
+
+  click() {
+    console.log('new')
+    this.wallpaperhide = false;
+
   }
 
   start(): void {
+    if (!this.isRecording) {
+      this.isRecording = true;
+      this.apiService.startRecording();
+    }
+    console.log('done');
+
+    this.startr = false;
+    this.end = true
+    this.sletter = false
+    this.sletter1 = true
+    this.hole = false
+    this.record = true
     if (this.speechRecognizer.isListening) {
       this.stop();
       return;
@@ -49,8 +122,36 @@ export class WebSpeechComponent implements OnInit {
   }
 
   stop(): void {
+    if (this.isRecording) {
+      this.apiService.stopRecording();
+      this.isRecording = false;
+    }
+    this.startr = true;
+    this.end = false
+    this.sletter = false
+    this.sletter1 = false
+    this.record = false
+    this.recordedTime = false
     this.speechRecognizer.stop();
   }
+
+  ngOnDestroy(): void {
+    if (this.timeInterval) {
+      clearInterval(this.timeInterval);
+    }
+  }
+
+  updateTime(): void {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    this.currentTime = `${hours}:${minutes}`;
+  }
+
+  goBack(): void {
+    this.wallpaperhide = true
+  }
+
 
   selectLanguage(language: string): void {
     if (this.speechRecognizer.isListening) {
@@ -59,7 +160,6 @@ export class WebSpeechComponent implements OnInit {
     this.currentLanguage = language;
     this.speechRecognizer.setLanguage(this.currentLanguage);
   }
-
   private initRecognition(): void {
     this.transcript$ = this.speechRecognizer.onResult().pipe(
       tap((notification) => {
